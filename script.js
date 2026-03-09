@@ -2,28 +2,28 @@
 // Attribution — You must give appropriate credit.
 // Non Commercial — You may not use the material for commercial purposes.
 
-import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
+import TunnelComponent from 'https://cdn.jsdelivr.net/npm/threejs-components@0.0.30/build/backgrounds/tunnel1.min.js'
 
-const app = TubesCursor(document.getElementById('canvas'), {
-  tubes: {
-    colors:["#f967fb", "#53bc28", "#6958d5"],
-    lights: {
-      intensity: 200,
-      colors:["#83f36e", "#fe8a2e", "#ff008a", "#60aed5"]
-    }
-  }
-})
+const app = TunnelComponent(document.getElementById('canvas'), {})
+
+app.tunnel.setColors(['#dda474', '#d54803', '#cc539c', '#c41f10', '#eb2d0e'])
+app.tunnel.uniforms.uNoiseScaleX.value = 2.0
+app.tunnel.uniforms.uNoiseTresholds.value[0] = 1 - 0.496041406596456
+app.tunnel.uniforms.uNoiseTresholds.value[1] = 1 - 0.17835484130314838
+app.tunnel.uniforms.uNoiseTresholds.value[2] = 1 - 0.40281655839303965
+app.tunnel.uniforms.uNoiseTresholds.value[3] = 1 - 0.4460903073277931
+app.tunnel.uniforms.uNoiseTresholds.value[4] = 1 - 0.47434758220851125
 
 document.body.addEventListener('click', () => {
-  const colors = randomColors(3)
-  const lightsColors = randomColors(4)
-  console.log(colors, lightsColors)
-  app.tubes.setColors(colors)
-  app.tubes.setLightsColors(lightsColors)
+  app.tunnel.setColors([
+    0xffffff * Math.random(), 
+    0xffffff * Math.random(), 
+    0xffffff * Math.random(), 
+    0xffffff * Math.random(), 
+    0xffffff * Math.random()
+  ])
+  const uNoiseTresholds = app.tunnel.uniforms.uNoiseTresholds.value
+  uNoiseTresholds.forEach((v, i) => {
+    uNoiseTresholds[i] = 0.5 + Math.random() * 0.5
+  })
 })
-
-function randomColors (count) {
-    return new Array(count)
-        .fill(0)
-        .map(() => "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0'))
-}
