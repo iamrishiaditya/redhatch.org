@@ -3,129 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RedHatch | Social Hub Promo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Terminal</title>
   <style>
-    body { font-family: 'Poppins', sans-serif; }
-    .hero-bg {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+    /* Reset everything */
+    * {
+      box-sizing: border-box;
     }
-    @keyframes gradientShift {
-      0% {background-position:0% 50%;}
-      50% {background-position:100% 50%;}
-      100% {background-position:0% 50%;}
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000; /* Completely black background */
+      color: #00ff41; /* Classic terminal/matrix green */
+      font-family: 'Consolas', 'Courier New', monospace;
+      height: 100vh;
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      overflow: hidden; /* No scrollbars */
     }
-    .floating {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: float 8s ease-in-out infinite;
+
+    .terminal-container {
+      font-size: 2rem; /* Size of the text */
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.6); /* Adds a subtle glowing "CRT screen" effect */
+      text-align: center;
+      letter-spacing: 2px;
     }
-    @keyframes float {
-      0% {transform: translateY(0px);}    
-      50% {transform: translateY(-20px);}    
-      100% {transform: translateY(0px);}    
+
+    /* The blinking terminal block cursor */
+    .cursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1em;
+      background-color: #00ff41;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+      box-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+      margin-left: 5px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
   </style>
 </head>
-<body class="relative overflow-x-hidden bg-slate-900 text-white">
+<body>
 
-  <!-- floating shapes -->
-  <div class="floating w-32 h-32 bg-red-500 top-10 left-20"></div>
-  <div class="floating w-20 h-20 bg-orange-500 top-40 right-32" style="animation-delay:2s"></div>
-  <div class="floating w-24 h-24 bg-yellow-500 bottom-20 left-1/2 translate-x-[-50%]" style="animation-delay:4s"></div>
+  <!-- Only the text and the cursor exist on the screen -->
+  <div class="terminal-container">
+    <span id="typewriter"></span><span class="cursor"></span>
+  </div>
 
-  <nav class="p-6 flex justify-between items-center z-20 relative">
-    <div class="text-2xl font-extrabold text-red-500">RedHatch</div>
-    <div class="space-x-6">
-      <a href="#features" class="hover:text-red-400 transition-colors">Features</a>
-      <a href="#download" class="hover:text-red-400 transition-colors">Download</a>
-      <a href="https://github.com/iamrishiaditya" class="bg-red-600 px-4 py-2 rounded-lg font-bold">GitHub</a>
-    </div>
-  </nav>
-
-  <header class="hero-bg h-screen flex flex-col justify-center items-center text-center px-4 relative z-10">
-    <h1 class="text-6xl font-extrabold mb-4 bg-gradient-to-r from-red-500 to-orange-400 bg-clip-text text-transparent opacity-0">Unite. Share. Inspire.</h1>
-    <p class="text-xl text-slate-400 max-w-2xl opacity-0">The ultimate social hub for creators, communities and friends. Coming soon.</p>
-    <button class="mt-8 px-8 py-3 bg-red-600 hover:bg-red-700 rounded-full text-lg font-bold transition-all opacity-0" id="cta-button">Join the Waitlist</button>
-  </header>
-
-  <section id="features" class="py-20 px-6 bg-slate-900">
-    <div class="max-w-6xl mx-auto text-center mb-12">
-      <h2 class="text-4xl font-bold mb-4 opacity-0">Features</h2>
-      <p class="text-slate-400 opacity-0">Designed to keep you connected and creative.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div class="feature-card p-6 bg-slate-800 rounded-lg opacity-0 transform scale-90">
-        <h3 class="text-2xl font-semibold mb-2">Live Streams</h3>
-        <p class="text-slate-400">Broadcast in real time with ultra-low latency.</p>
-      </div>
-      <div class="feature-card p-6 bg-slate-800 rounded-lg opacity-0 transform scale-90">
-        <h3 class="text-2xl font-semibold mb-2">Community Hubs</h3>
-        <p class="text-slate-400">Create spaces for your passions and collaborate.</p>
-      </div>
-      <div class="feature-card p-6 bg-slate-800 rounded-lg opacity-0 transform scale-90">
-        <h3 class="text-2xl font-semibold mb-2">AI Tools</h3>
-        <p class="text-slate-400">Smart suggestions that fuel your creativity.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="download" class="py-20 px-6 bg-slate-900">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-4 opacity-0">Download Beta</h2>
-      <p class="text-slate-400 mb-8 opacity-0">Get early access on iOS and Android.</p>
-      <div class="flex justify-center space-x-4 opacity-0">
-        <a href="#" class="bg-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">App Store</a>
-        <a href="#" class="bg-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">Google Play</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="py-12 text-center text-slate-500">
-    <p>&copy; <script>document.write(new Date().getFullYear())</script> RedHatch. All rights reserved.</p>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
   <script>
-    // animate hero elements
-    gsap.to("header h1", {opacity:1, y:0, duration:1, ease:"power2.out"});
-    gsap.to("header p", {opacity:1, y:0, duration:1, ease:"power2.out", delay:0.3});
-    gsap.to("#cta-button", {opacity:1, y:0, duration:1, ease:"power2.out", delay:0.6});
+    // The text you want to display in the center
+    const textToType = "admin@redhatch:~$ INITIALIZING SYSTEM...";
+    const textElement = document.getElementById("typewriter");
+    let index = 0;
 
-    // scroll-triggered features
-    gsap.utils.toArray(".feature-card").forEach((card, i) => {
-      gsap.to(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: "top 80%",
-        },
-        opacity:1,
-        scale:1,
-        duration:0.6,
-        ease:"back.out(1.7)",
-        delay: i * 0.2
-      });
-    });
+    // Function to simulate realistic typing
+    function typeWriter() {
+      if (index < textToType.length) {
+        textElement.innerHTML += textToType.charAt(index);
+        index++;
+        
+        // Randomize the typing speed slightly to look like a real human/computer typing
+        const typingSpeed = Math.random() * 50 + 50; 
+        setTimeout(typeWriter, typingSpeed);
+      } else {
+        // Optional: After typing is done, switch to a "Ready" state after 2 seconds
+        setTimeout(() => {
+          textElement.innerHTML = "admin@redhatch:~$ SYSTEM READY.";
+        }, 2000);
+      }
+    }
 
-    // fade in section headings
-    gsap.utils.toArray("section h2, section p, section .flex").forEach(el => {
-      gsap.from(el, {
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%"
-        },
-        opacity:0,
-        y:20,
-        duration:0.8,
-        ease:"power2.out"
-      });
-    });
+    // Start the typing effect 1 second after opening the page
+    setTimeout(typeWriter, 1000);
   </script>
+
 </body>
 </html>
