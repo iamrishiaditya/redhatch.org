@@ -10,12 +10,7 @@ body {
 
 #app {
   height: 100%;
-  font-family: "Montserrat", serif;
-}
-
-#app a {
-  text-decoration: none;
-  color: #fff;
+  font-family: "Montserrat", sans-serif;
 }
 
 .hero {
@@ -25,30 +20,32 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px; /* Added a little more breathing room between the title and tagline */
+  gap: 12px; /* Space between the Title and Tagline */
 }
 
-h1, h2, p {
+h1, h2 {
   margin: 0;
   padding: 0;
   color: white;
   text-shadow: 0 0 20px rgba(0, 0, 0, 1);
   line-height: 100%;
   user-select: none;
-  text-align: center; /* Ensures the tagline stays centered on phones */
+  text-align: center;
 }
 
 h1 {
   font-size: 80px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 4px; /* Added some spacing to make it look like a premium brand */
+  letter-spacing: 4px; 
 }
 
 h2 {
-  font-size: 24px; /* Made the tagline smaller so it looks modern */
+  font-size: 16px; /* <-- MUCH SMALLER NOW */
   font-weight: 400; 
-  letter-spacing: 1.5px; /* Spaced out the letters slightly */
+  letter-spacing: 2px; /* Spread out the letters slightly */
+  text-transform: none; /* Let it be written as a normal sentence */
+  opacity: 0.8; /* Slightly faded for a premium "startup" look */
 }
 
 #canvas {
@@ -58,4 +55,11 @@ h2 {
   bottom: 0;
   left: 0;
   overflow: hidden;
+  z-index: -1; /* Keeps the tunnel behind the text */
+}
+
+/* Make it look good on mobile phones too */
+@media (max-width: 768px) {
+  h1 { font-size: 50px; }
+  h2 { font-size: 14px; padding: 0 20px; line-height: 1.5; }
 }
