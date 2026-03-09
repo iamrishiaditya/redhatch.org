@@ -3,99 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced WebGL Website</title>
-  
-  <!-- THIS LINE CONNECTS YOUR CSS FILE -->
+  <title>Tubes Cursor</title>
+
+  <!-- Connect Google Fonts for the nice typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Connect your CSS file -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- The actual HTML elements -->
-  <canvas id="canvas"></canvas>
-  <textarea id="codeEditor" class="editor" spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" oninput="render()"></textarea>
-  <pre id="error"></pre>
-  <div id="indicator"></div>
-  <div id="controls">
-    <div class="controls">
-      <input id="btnToggleView" class="icon" type="checkbox" name="toggleView" onclick="toggleView()">
-      <input id="btnToggleResolution" class="icon" type="checkbox" name="toggleResolution" onchange="toggleResolution()">
-      <input id="btnReset" class="icon" type="checkbox" name="reset" onclick="reset()">
+  <!-- The HTML Elements -->
+  <div id="app">
+    <canvas id="canvas"></canvas>
+    <div class="hero">
+      <h1>Tubes</h1>
+      <h2>Cursor</h2>
+      <a target="_blank" href="https://www.framer.com/@kevin-levron/">Framer Component</a>
     </div>
   </div>
 
-  <!-- The 3D Math Shader (Leave this in the HTML for WebGL codes) -->
-  <script type="x-shader/x-fragment">#version 300 es
-  precision highp float;
-  out vec4 O;
-  uniform float time;
-  uniform vec2 resolution;
-  #define FC gl_FragCoord.xy
-  #define R resolution
-  #define T time
-  #define N normalize
-  #define MN min(R.x,R.y)
-  #define S smoothstep
-  #define rot(a) mat2(cos((a)-vec4(0,11,33,0)))
-  #define hue(a) (.5+.5*sin(3.14*(a)+vec3(1,2,3)))
-  #define EFFECT(rd,n) pow(clamp(noise(T-reflect(rd,n).xz*4.),.0,1.),5.)
-  float rnd(vec2 p) {
-      p=fract(p*vec2(12.9898,78.233));
-      p+=dot(p,p+34.56);
-      return fract(p.x*p.y);
-  }
-  float noise(vec2 p) {
-      vec2 i=floor(p), u=S(i,i+1.,p), k=vec2(1,0);
-      float a=rnd(i), b=rnd(i+k), c=rnd(i+k.yx), d=rnd(i+k.xx);
-      return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
-  }
-  float map(vec3 p) {
-      const float n=5.;
-      vec2 id=round(p.xz/n);
-      p.xz-=clamp(round(p.xz/n),-7.,7.)*n;
-      p=abs(p)-1.;
-      float d=max(max(p.x,p.y),p.z)-.9*cos(2.5*T-length(id));
-      return d*.8;
-  }
-  vec3 norm(vec3 p) {
-      float h=1e-3; vec2 k=vec2(-1,1);
-      return N(k.xyy*map(p+k.xyy*h)+k.yxy*map(p+k.yxy*h)+k.yyx*map(p+k.yyx*h)+k.xxx*map(p+k.xxx*h));
-  }
-  bool march(inout vec3 p, vec3 rd) {
-      for (int i; i++<500;) {
-          float d=map(p);
-          if (abs(d)<1e-3) return true;
-          if (d>100.) return false;
-          p+=rd*d;
-      }
-  }
-  void cam(inout vec3 p) { p.yz*=rot(1.); p.xz*=rot(.2); p.xy*=rot(-.6); }
-  vec3 render(vec2 uv) {
-      vec3 col=vec3(0), p=vec3(10,-5,-75), rd=N(vec3(uv,.7));
-      cam(p); cam(rd);
-      if (march(p,rd)) {
-          vec3 n=norm(p);
-          col+=pow(clamp(dot(N(vec3(0,10,0)-rd),n),.0,1.),5.)*.4+pow(clamp(dot(reflect(rd,n),N(vec3(10,10,40)-p)),.0,1.),8.);
-          float k=.5*length(round(p.xz/5.));
-          col*=hue(k-T*1.5);
-          col+=EFFECT(rd,n);
-      } else { col+=EFFECT(rd,vec3(0,1,0)); }
-      return col;
-  }
-  #define AA
-  void main() {
-      vec2 uv=(FC-.5*R)/MN;
-      vec3 col=render(uv);
-      #ifdef AA
-      for (float x=.0; x<=1.; x++) {
-          for (float y=.0; y<=1.; y++) col+=render(uv+(vec2(x,y)-.5)/R);
-      }
-      col/=5.;
-      #endif		
-    O=vec4(col,1);
-  }
-  </script>
+  <!-- Connect your JS file (Notice type="module" - this is required when your JS uses 'import') -->
+  <script type="module" src="script.js"></script>
 
-  <!-- THIS LINE CONNECTS YOUR JAVASCRIPT FILE -->
-  <script src="script.js"></script>
 </body>
 </html>
