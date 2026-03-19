@@ -1,65 +1,80 @@
-body, html, #app {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-
 body {
-  touch-action: none;
-}
-
-#app {
-  height: 100%;
-  font-family: "Montserrat", sans-serif;
-}
-
-.hero {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px; /* Space between the Title and Tagline */
-}
-
-h1, h2 {
   margin: 0;
   padding: 0;
-  color: white;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+  font-family: "Poppins", sans-serif;
+  background-color: #0d0d0d;
+}
+
+/* This makes the entire screen clickable while preserving layout */
+.fullscreen-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  min-height: 100vh;
+  padding: 10%;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 200vh;
+}
+
+.text {
+  font-size: 10vw;
+  letter-spacing: -0.01em;
   line-height: 100%;
-  user-select: none;
-  text-align: center;
+  margin: 0;
+
+  width: 100%;
+  color: rgb(182, 182, 182, 0.2);
+  background: linear-gradient(to right, #b6b6b6, #b6b6b6) no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 0%;
+  transition: background-size cubic-bezier(0.1, 0.5, 0.5, 1) 0.5s;
+
+  border-bottom: 1px solid #2f2b28;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+
+  animation-name: reveal;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-timeline: view();
+  animation-range: entry 100% cover 50%;
 }
 
-h1 {
-  font-size: 80px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 4px; 
+@keyframes reveal {
+  to {
+    background-size: 100%;
+  }
 }
 
-h2 {
-  font-size: 16px; /* <-- MUCH SMALLER NOW */
-  font-weight: 400; 
-  letter-spacing: 2px; /* Spread out the letters slightly */
-  text-transform: none; /* Let it be written as a normal sentence */
-  opacity: 0.8; /* Slightly faded for a premium "startup" look */
-}
+span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 
-#canvas {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  overflow: hidden;
-  z-index: -1; /* Keeps the tunnel behind the text */
+  background-color: #4246ce;
+  color: #0d0d0d;
+
+  clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+  transform-origin: center;
+  transition: all cubic-bezier(0.1, 0.5, 0.5, 1) 0.4s;
+
+  display: flex;
+  align-items: center;
 }
 
-/* Make it look good on mobile phones too */
-@media (max-width: 768px) {
-  h1 { font-size: 50px; }
-  h2 { font-size: 14px; padding: 0 20px; line-height: 1.5; }
+.text:hover > span {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
