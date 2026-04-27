@@ -74,7 +74,7 @@ body {
 }
 
 .play-store-img {
-  height: 65px; /* Slightly larger to account for the built-in padding on the Google PNG */
+  height: 80px; /* FIX: Massively increased size for Desktop */
   width: auto;
   transition: transform 0.2s ease;
   display: block;
@@ -98,7 +98,10 @@ body {
   flex-wrap: nowrap; 
   align-items: center; 
   gap: clamp(15px, 2vw, 30px); 
-  padding: 0 20px 0 0; 
+  
+  /* FIX: 5% padding on the left aligns the images with the text above on desktop */
+  padding: 0 20px 0 5%; 
+  
   width: fit-content; 
   margin: 0; 
 }
@@ -123,12 +126,16 @@ body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   .brand-logo {
-    height: 42px; /* FIX: Much larger on mobile so it stays highly visible */
+    height: 42px; 
   }
   .hero {
     padding: 40px 5% 30px;
   }
   .play-store-img {
-    height: 55px; /* Keeps the button large and legible on phones */
+    height: 65px; /* FIX: Increased button size on Mobile */
+  }
+  .features-row {
+    /* FIX: 0px padding on the left makes it completely flush to the screen edge on phones */
+    padding: 0 20px 0 0; 
   }
 }
