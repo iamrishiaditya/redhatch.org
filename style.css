@@ -18,15 +18,14 @@ body {
   margin: 0 auto;
 }
 
-/* FIX 3: Styling the 711x232 Logo perfectly */
 .logo {
   display: block;
   text-decoration: none;
 }
 
 .brand-logo {
-  height: 45px; /* Scales down the 232px height beautifully */
-  width: auto;  /* Maintains your exact 711px width ratio */
+  height: 45px; 
+  width: auto;  
   display: block;
 }
 
@@ -54,7 +53,7 @@ body {
 }
 
 .hero h1 span {
-  background: linear-gradient(90deg, #df2a2a, #ff6b6b); /* Adjusted to match your new red logo vibe */
+  background: linear-gradient(90deg, #df2a2a, #ff6b6b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -69,19 +68,16 @@ body {
   margin-right: auto;
 }
 
-/* FIX 4: Play Store Button Mobile Glitch Fix */
+/* Play Store Button */
 .play-store-link {
   display: inline-block;
 }
 
 .play-store-img {
-  height: 60px;
+  height: 65px; /* Slightly larger to account for the built-in padding on the Google PNG */
   width: auto;
-  border-radius: 8px; /* Smooths the edges of your jpeg */
   transition: transform 0.2s ease;
   display: block;
-  /* This prevents mobile browsers from force-inverting the colors */
-  filter: contrast(1) brightness(1) invert(0); 
 }
 
 .play-store-link:hover .play-store-img {
@@ -117,7 +113,6 @@ body {
   object-fit: contain; 
   transition: transform 0.2s ease;
   cursor: pointer;
-  /* Adding a subtle shadow so they pop off the dark background */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -128,12 +123,12 @@ body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   .brand-logo {
-    height: 32px; /* Slightly smaller logo on phones */
+    height: 42px; /* FIX: Much larger on mobile so it stays highly visible */
   }
   .hero {
     padding: 40px 5% 30px;
   }
   .play-store-img {
-    height: 50px; /* Scales the button down for smaller screens */
+    height: 55px; /* Keeps the button large and legible on phones */
   }
 }
