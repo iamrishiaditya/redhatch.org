@@ -18,20 +18,16 @@ body {
   margin: 0 auto;
 }
 
+/* FIX 3: Styling the 711x232 Logo perfectly */
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: 2px;
+  display: block;
+  text-decoration: none;
 }
 
-.logo-img {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
+.brand-logo {
+  height: 45px; /* Scales down the 232px height beautifully */
+  width: auto;  /* Maintains your exact 711px width ratio */
+  display: block;
 }
 
 .nav-icons {
@@ -44,7 +40,6 @@ body {
 /* Hero Section */
 .hero {
   text-align: center;
-  /* Reduced bottom padding to keep it tight with the images */
   padding: 60px 5% 40px; 
   max-width: 800px;
   margin: 0 auto;
@@ -52,7 +47,6 @@ body {
 
 .hero h1 {
   font-family: 'Space Grotesk', sans-serif;
-  /* Slightly smaller on massive screens to avoid eating up space */
   font-size: clamp(2rem, 5vw, 4rem); 
   line-height: 1.1;
   margin-bottom: 20px;
@@ -60,7 +54,7 @@ body {
 }
 
 .hero h1 span {
-  background: linear-gradient(90deg, #4246ce, #e3d1f5);
+  background: linear-gradient(90deg, #df2a2a, #ff6b6b); /* Adjusted to match your new red logo vibe */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -75,12 +69,22 @@ body {
   margin-right: auto;
 }
 
-.play-store-btn img {
-  height: 60px;
-  transition: transform 0.2s ease;
+/* FIX 4: Play Store Button Mobile Glitch Fix */
+.play-store-link {
+  display: inline-block;
 }
 
-.play-store-btn:hover img {
+.play-store-img {
+  height: 60px;
+  width: auto;
+  border-radius: 8px; /* Smooths the edges of your jpeg */
+  transition: transform 0.2s ease;
+  display: block;
+  /* This prevents mobile browsers from force-inverting the colors */
+  filter: contrast(1) brightness(1) invert(0); 
+}
+
+.play-store-link:hover .play-store-img {
   transform: scale(1.05);
 }
 
@@ -96,39 +100,40 @@ body {
 .features-row {
   display: flex;
   flex-wrap: nowrap; 
-  align-items: center; /* Keeps them vertically centered if heights vary */
-  /* Dynamic gap: smaller on phones, larger on desktops */
+  align-items: center; 
   gap: clamp(15px, 2vw, 30px); 
   padding: 0 20px 0 0; 
   width: fit-content; 
   margin: 0; 
 }
 
-/* THE FIX: Height-based dynamic scaling.
-   This ensures images take up exactly 45% of the screen height, 
-   but never shrink below 280px or grow beyond 500px.
-*/
+/* Dynamic Image Scaling */
 .app-card-img {
   height: clamp(280px, 45vh, 500px); 
-  width: auto; /* Allows the width to scale naturally with the height */
-  flex-shrink: 0; /* Prevents the images from squishing together */
+  width: auto; 
+  flex-shrink: 0; 
   display: block;
   border-radius: 20px; 
-  object-fit: contain; /* Ensures the whole image stays visible */
+  object-fit: contain; 
   transition: transform 0.2s ease;
   cursor: pointer;
+  /* Adding a subtle shadow so they pop off the dark background */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .app-card-img:hover {
   transform: translateY(-5px); 
 }
 
-/* Mobile Adjustments for the Hero Section */
+/* Mobile Adjustments */
 @media (max-width: 768px) {
+  .brand-logo {
+    height: 32px; /* Slightly smaller logo on phones */
+  }
   .hero {
     padding: 40px 5% 30px;
   }
-  .play-store-btn img {
-    height: 50px;
+  .play-store-img {
+    height: 50px; /* Scales the button down for smaller screens */
   }
 }
