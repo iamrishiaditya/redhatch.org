@@ -44,14 +44,16 @@ body {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 80px 5% 60px;
+  /* Reduced bottom padding to keep it tight with the images */
+  padding: 60px 5% 40px; 
   max-width: 800px;
   margin: 0 auto;
 }
 
 .hero h1 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 6vw, 4.5rem);
+  /* Slightly smaller on massive screens to avoid eating up space */
+  font-size: clamp(2rem, 5vw, 4rem); 
   line-height: 1.1;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -67,7 +69,7 @@ body {
   font-size: 1.1rem;
   color: #a0a0a0;
   line-height: 1.6;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -94,24 +96,39 @@ body {
 .features-row {
   display: flex;
   flex-wrap: nowrap; 
-  gap: 20px;
-  /* 0px padding on the left makes it flush with the screen edge */
-  /* 20px padding on the right so the last image doesn't stick to the edge when scrolled */
+  align-items: center; /* Keeps them vertically centered if heights vary */
+  /* Dynamic gap: smaller on phones, larger on desktops */
+  gap: clamp(15px, 2vw, 30px); 
   padding: 0 20px 0 0; 
   width: fit-content; 
   margin: 0; 
 }
 
-/* Your Pre-designed Images */
+/* THE FIX: Height-based dynamic scaling.
+   This ensures images take up exactly 45% of the screen height, 
+   but never shrink below 280px or grow beyond 500px.
+*/
 .app-card-img {
-  flex: 0 0 300px; /* Sets the width of your images. Change 300px if you want them bigger/smaller */
-  height: auto;
+  height: clamp(280px, 45vh, 500px); 
+  width: auto; /* Allows the width to scale naturally with the height */
+  flex-shrink: 0; /* Prevents the images from squishing together */
   display: block;
-  border-radius: 24px; /* Optional: adds rounded corners. Remove if your images already have them */
+  border-radius: 20px; 
+  object-fit: contain; /* Ensures the whole image stays visible */
   transition: transform 0.2s ease;
   cursor: pointer;
 }
 
 .app-card-img:hover {
-  transform: translateY(-5px); /* Gives a slight lift effect when hovered over with a mouse */
+  transform: translateY(-5px); 
+}
+
+/* Mobile Adjustments for the Hero Section */
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 5% 30px;
+  }
+  .play-store-btn img {
+    height: 50px;
+  }
 }
