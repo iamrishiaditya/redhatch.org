@@ -1,92 +1,145 @@
+/* Base Styles */
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
   background-color: #0d0d0d;
+  color: #ffffff;
+  overflow-x: hidden;
 }
 
-.fullscreen-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  min-height: 100vh;
-  padding: 10%;
-  box-sizing: border-box;
-}
-
-.container {
+/* Navbar */
+.navbar {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  height: 200vh;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.text {
-  font-size: 10vw;
-  letter-spacing: -0.01em;
-  line-height: 100%;
-  margin: 0;
-
-  width: 100%;
-  color: rgb(182, 182, 182, 0.2);
-  background: linear-gradient(to right, #b6b6b6, #b6b6b6) no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  background-size: 0%;
-  transition: background-size cubic-bezier(0.1, 0.5, 0.5, 1) 0.5s;
-
-  border-bottom: 1px solid #2f2b28;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
-
-  animation-name: reveal;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-  animation-timeline: view();
-  animation-range: entry 100% cover 50%;
-}
-
-@keyframes reveal {
-  to {
-    background-size: 100%;
-  }
-}
-
-span {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-
-  left: 0;
-  background-color: #4246ce;
-  color: #0d0d0d;
-
-  clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
-  transform-origin: center;
-  transition: all cubic-bezier(0.1, 0.5, 0.5, 1) 0.4s;
-
+.logo {
   display: flex;
   align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
 }
 
-.text:hover > span {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+.logo-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
 }
 
-/* --- NEW MOBILE FIX --- */
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 80px 5% 60px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero h1 span {
+  background: linear-gradient(90deg, #4246ce, #e3d1f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #a0a0a0;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.play-store-btn img {
+  height: 60px;
+  transition: transform 0.2s ease;
+}
+
+.play-store-btn:hover img {
+  transform: scale(1.05);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 5% 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 24px;
+  padding: 30px 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  color: #000;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-text {
+  margin-bottom: 30px;
+}
+
+.card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+/* App Screenshot inside Card */
+.app-screenshot {
+  width: 100%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+  display: block;
+  margin-top: auto;
+}
+
+/* Card Colors */
+.card-yellow { background-color: #fceba7; }
+.card-blue { background-color: #cde8fc; }
+.card-purple { background-color: #e3d1f5; }
+.card-orange { background-color: #fcdab0; }
+.card-green { background-color: #d3f5d5; }
+.card-grey { background-color: #e6e8e6; }
+.card-pink { background-color: #fcd0df; }
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
-  .container {
-    height: 130vh; /* Drastically reduces the required scroll distance */
-    justify-content: flex-start; /* Pushes the text block higher up the screen */
-    padding-top: 15vh; /* Gives it just a little breathing room at the top */
-  }
-  
-  .text {
-    font-size: 15vw; /* Makes the text slightly larger and easier to read on phones */
+  .hero {
+    padding: 50px 5% 40px;
   }
 }
