@@ -1,11 +1,11 @@
-/* Base Styles consistent with image_1.png dark mode design */
+/* Base Styles */
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
   background-color: #0d0d0d;
   color: #ffffff;
-  overflow-x: hidden; /* Keep main page vertical scroll only */
+  overflow-x: hidden;
 }
 
 /* Navbar */
@@ -41,7 +41,7 @@ body {
     font-size: 1.2rem;
 }
 
-/* Hero Section consistent with image_1.png layout */
+/* Hero Section */
 .hero {
   text-align: center;
   padding: 80px 5% 60px;
@@ -82,81 +82,36 @@ body {
   transform: scale(1.05);
 }
 
-/* --- FORCED SINGLE ROW CONTAINER (Desktop/Mobile UX like image_1.png row logic) --- */
+/* --- FLUSH LEFT ROW CONTAINER --- */
 .features-row-container {
   width: 100vw;
   padding-bottom: 80px;
-  overflow-x: auto; /* Horizontal scroll if screen too small for 7 cards */
-  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; 
 }
 
-/* Features Row (The flexbox that contains the 7 items) */
+/* The horizontal track */
 .features-row {
   display: flex;
-  flex-wrap: nowrap; /* Forces items to stay in one row */
+  flex-wrap: nowrap; 
   gap: 20px;
-  padding: 0 5%;
-  width: fit-content; /* Important: prevents cards from compressing vertically */
-  margin: 0 auto; /* centers the entire row on ultra-wide desktop screens */
+  /* 0px padding on the left makes it flush with the screen edge */
+  /* 20px padding on the right so the last image doesn't stick to the edge when scrolled */
+  padding: 0 20px 0 0; 
+  width: fit-content; 
+  margin: 0; 
 }
 
-.card {
-  /* Fix basis ensures cards don't shrink unreadably on phones consistent with image_1.png sizing standards */
-  flex: 0 0 280px; /* Don't grow, don't shrink, fix basis to 280px wide */
-  border-radius: 24px;
-  padding: 30px 30px 0 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  color: #000;
-  transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card-text {
-  margin-bottom: 30px;
-}
-
-.card h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.5rem;
-  margin: 0 0 10px 0;
-  text-transform: uppercase;
-}
-
-.card p {
-  font-size: 0.95rem;
-  margin: 0;
-  opacity: 0.8;
-  font-weight: 600;
-}
-
-/* App Screenshot inside Card */
-.app-screenshot {
-  width: 100%;
+/* Your Pre-designed Images */
+.app-card-img {
+  flex: 0 0 300px; /* Sets the width of your images. Change 300px if you want them bigger/smaller */
   height: auto;
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
   display: block;
-  margin-top: auto;
+  border-radius: 24px; /* Optional: adds rounded corners. Remove if your images already have them */
+  transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
-/* Card Colors consistent with image_0.png reference */
-.card-yellow { background-color: #fceba7; }
-.card-blue { background-color: #cde8fc; }
-.card-purple { background-color: #e3d1f5; }
-.card-orange { background-color: #fcdab0; }
-.card-green { background-color: #d3f5d5; }
-.card-grey { background-color: #e6e8e6; }
-.card-pink { background-color: #fcd0df; }
-
-/* Desktop-specific tweak to disable overflow if screen is massive like in image_1.png example */
-@media (min-width: 2100px) {
-    .features-row-container {
-        overflow-x: hidden; /* on extreme screens, it just fits vertically */
-    }
+.app-card-img:hover {
+  transform: translateY(-5px); /* Gives a slight lift effect when hovered over with a mouse */
 }
