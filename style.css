@@ -1,11 +1,11 @@
-/* Base Styles */
+/* Base Styles consistent with image_1.png dark mode design */
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
   background-color: #0d0d0d;
   color: #ffffff;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Keep main page vertical scroll only */
 }
 
 /* Navbar */
@@ -34,7 +34,14 @@ body {
   border-radius: 8px;
 }
 
-/* Hero Section */
+.nav-icons {
+    display: flex;
+    gap: 15px;
+    opacity: 0.7;
+    font-size: 1.2rem;
+}
+
+/* Hero Section consistent with image_1.png layout */
 .hero {
   text-align: center;
   padding: 80px 5% 60px;
@@ -44,7 +51,7 @@ body {
 
 .hero h1 {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 6vw, 4.5rem);
   line-height: 1.1;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -75,17 +82,27 @@ body {
   transform: scale(1.05);
 }
 
-/* Features Grid */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* --- FORCED SINGLE ROW CONTAINER (Desktop/Mobile UX like image_1.png row logic) --- */
+.features-row-container {
+  width: 100vw;
+  padding-bottom: 80px;
+  overflow-x: auto; /* Horizontal scroll if screen too small for 7 cards */
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+}
+
+/* Features Row (The flexbox that contains the 7 items) */
+.features-row {
+  display: flex;
+  flex-wrap: nowrap; /* Forces items to stay in one row */
   gap: 20px;
-  padding: 0 5% 80px;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 0 5%;
+  width: fit-content; /* Important: prevents cards from compressing vertically */
+  margin: 0 auto; /* centers the entire row on ultra-wide desktop screens */
 }
 
 .card {
+  /* Fix basis ensures cards don't shrink unreadably on phones consistent with image_1.png sizing standards */
+  flex: 0 0 280px; /* Don't grow, don't shrink, fix basis to 280px wide */
   border-radius: 24px;
   padding: 30px 30px 0 30px;
   display: flex;
@@ -128,7 +145,7 @@ body {
   margin-top: auto;
 }
 
-/* Card Colors */
+/* Card Colors consistent with image_0.png reference */
 .card-yellow { background-color: #fceba7; }
 .card-blue { background-color: #cde8fc; }
 .card-purple { background-color: #e3d1f5; }
@@ -137,9 +154,9 @@ body {
 .card-grey { background-color: #e6e8e6; }
 .card-pink { background-color: #fcd0df; }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  .hero {
-    padding: 50px 5% 40px;
-  }
+/* Desktop-specific tweak to disable overflow if screen is massive like in image_1.png example */
+@media (min-width: 2100px) {
+    .features-row-container {
+        overflow-x: hidden; /* on extreme screens, it just fits vertically */
+    }
 }
