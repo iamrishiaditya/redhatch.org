@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Redhatch</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <img src="top-logo.png" alt="Redhatch Logo" class="brand-logo">
+    </a>
+  </nav>
+
+  <!-- Legal Content -->
+  <main class="legal-container">
+    <h1>Redhatch: Privacy Policy & Terms of Data</h1>
+    <p class="last-updated">Last Updated: February 9, 2026</p>
+
+    <h2>1. Introduction</h2>
+    <p><strong>redhatch</strong> ("the App," "we," "us") is a geo-spatial augmented reality interface designed to overlay a persistent game world and social utility network over the real world. We take your privacy seriously. Because our application bridges digital data with physical reality, we strictly adhere to a "Data Minimization" and "User Sovereignty" philosophy.</p>
+    <p>By using redhatch, you agree to the collection and use of information in accordance with this policy.</p>
+
+    <h2>2. The AccessibilityService API Disclosure (Critical)</h2>
+    <p>redhatch uses the Android AccessibilityService API for a single, specific safety feature: The Hardware Emergency Trigger.</p>
+    <ul>
+      <li><strong>Why we use it:</strong> To allow users to broadcast an Emergency SOS ("Mayday") by holding the physical Volume Up/Down buttons for 3 seconds. This feature must work even when the app is in the background or the screen is locked to ensure safety during distress.</li>
+      <li><strong>What we access:</strong> We monitor KEY_EVENT streams solely to detect the specific pattern of volume button presses.</li>
+      <li><strong>What we DO NOT access:</strong> We do not read screen content, view notifications, intercept text inputs, or access any other accessibility capabilities. We do not change user settings.</li>
+      <li><strong>User Consent:</strong> You must explicitly enable this service in Android Settings. You can disable it at any time.</li>
+    </ul>
+
+    <h2>3. Data We Collect & How We Use It</h2>
+    
+    <h3>A. Location Data (Foreground & Background)</h3>
+    <ul>
+      <li><strong>Data:</strong> Precise GPS (Fine Location) and Coarse Location.</li>
+      <li><strong>Purpose:</strong> 
+        <br>- <em>Gameplay:</em> To render your avatar, local quests, and infrastructure on the 3D map.
+        <br>- <em>Infrastructure Verification:</em> To verify you are physically present at a location (e.g., verifying a Quest or Shop).
+        <br>- <em>Safety Net (Background):</em> If you enable "Emergency Protocols," we monitor your location in the background relative to your designated "Super Spawn" (Safe Zone). This allows the SOS feature to attach accurate coordinates to your distress signal.
+      </li>
+      <li><strong>Storage:</strong> Real-time location is ephemeral. We only persist location data when you actively create a marker (Post, Quest, or Structure) or trigger an emergency.</li>
+    </ul>
+
+    <h3>B. Camera Data</h3>
+    <ul>
+      <li><strong>Data:</strong> Image data stream.</li>
+      <li><strong>Purpose:</strong>
+        <br>- <em>Identity Verification:</em> To capture a "Live Selfie" for P2P (Peer-to-Peer) verification.
+        <br>- <em>QR Scanning:</em> To read merchant codes and verify identity proofs.
+        <br>- <em>Content Creation:</em> To take photos for News, Posts, or Profile pictures.
+      </li>
+      <li><strong>Storage:</strong> Images used for P2P verification are encrypted locally on your device and are not uploaded to our servers in plaintext. Public profile/post images are hosted on secure cloud storage (Cloudinary).</li>
+    </ul>
+
+    <h3>C. Audio & Microphone</h3>
+    <ul>
+      <li><strong>Data:</strong> Audio input.</li>
+      <li><strong>Purpose:</strong> Used solely for the "Audio Verification" feature during high-stakes Quests to prove human presence.</li>
+      <li><strong>Storage:</strong> Audio is processed in real-time and is not permanently recorded or stored on our servers.</li>
+    </ul>
+
+    <h3>D. User Content & Messages</h3>
+    <ul>
+      <li><strong>Data:</strong> Chat messages, comments, and posts.</li>
+      <li><strong>Privacy:</strong> Direct Messages (1-on-1) are end-to-end encrypted using the Signal Protocol. We (the developers) cannot read your private chats.</li>
+      <li><strong>Public Data:</strong> Content posted to the "Global Feed," "City Board," or "News" is public and visible to other users in your vicinity.</li>
+    </ul>
+
+    <h3>E. Device Information & Identifiers</h3>
+    <ul>
+      <li><strong>Data:</strong> Device ID, Firebase Cloud Messaging (FCM) Token.</li>
+      <li><strong>Purpose:</strong> To deliver push notifications for chats, zone alerts, and emergency warnings. To prevent bot farms and fraud via device integrity checks.</li>
+    </ul>
+
+    <h2>4. Third-Party Services</h2>
+    <p>We use the following trusted third-party services:</p>
+    <ul>
+      <li><strong>Google Maps Platform / Mapbox:</strong> For rendering map tiles and navigation routing.</li>
+      <li><strong>Supabase:</strong> For secure database hosting, authentication, and backend logic.</li>
+      <li><strong>Cloudinary:</strong> For hosting public user-generated images (optimized media).</li>
+      <li><strong>Firebase (Google):</strong> For Push Notifications (FCM) and verifying Google Play billing receipts.</li>
+      <li><strong>Google Play Billing:</strong> To process in-app purchases for Gems, Verification Badges, and Fees. We do not store your credit card information.</li>
+    </ul>
+
+    <h2>5. Peer-to-Peer (P2P) Data Handling</h2>
+    <p>redhatch includes a "Dead Drop" Identity Protocol. When you verify your identity with another user:</p>
+    <ul>
+      <li>Your proofs (ID/Selfie) are encrypted on your device.</li>
+      <li>The decryption key is transferred visually via QR code to the verifier.</li>
+      <li>Our servers act only as a relay for the encrypted blob. We cannot decrypt or view your identity documents.</li>
+    </ul>
+
+    <h2>6. Account Deletion</h2>
+    <p>You have the right to delete your account at any time.</p>
+    <ul>
+      <li><strong>In-App:</strong> Go to Settings > Account > Delete Account.</li>
+      <li><strong>Effect:</strong> This triggers a cascading wipe. Your profile, authentication credentials, and Signal encryption keys are permanently removed. Public contributions (e.g., Quest completions) may be anonymized to preserve the game state for other players.</li>
+    </ul>
+
+    <h2>7. Children's Privacy</h2>
+    <p>redhatch is not intended for children under the age of 13. We do not knowingly collect personal identification information from children. If we discover a user is under 13, we will immediately delete the account.</p>
+
+    <h2>8. Contact Us</h2>
+    <p>If you have questions about this privacy policy or our data practices, please contact us at:<br>
+    <strong>Email:</strong> redhatch.org@gmail.com</p>
+  </main>
+
+</body>
+</html>

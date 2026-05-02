@@ -139,3 +139,65 @@ body {
     padding: 0 20px 0 0; 
   }
 }
+
+/* --- LEGAL PAGES SPECIFIC CSS --- */
+.legal-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 5% 80px;
+  color: #d1d1d1;
+  line-height: 1.8;
+  font-family: "Poppins", sans-serif;
+}
+
+.legal-container h1 {
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 5px;
+}
+
+.legal-container .last-updated {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.legal-container h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.legal-container h3 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.legal-container p {
+  margin-bottom: 20px;
+}
+
+.legal-container ul {
+  margin-bottom: 30px;
+  padding-left: 20px;
+}
+
+.legal-container li {
+  margin-bottom: 10px;
+}
+
+.legal-container a {
+  color: #ff6b6b;
+  text-decoration: none;
+}
+
+.legal-container a:hover {
+  text-decoration: underline;
+}
