@@ -1,153 +1,212 @@
-/* Base Styles */
-body {
+/* --- GLOBAL RESETS & FONTS --- */
+* {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
-  background-color: #0d0d0d;
-  color: #ffffff;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #050505;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 5%;
+.container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* --- NAVBAR --- */
+.navbar {
+  padding: 20px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  border-bottom: 1px solid #1a1a1a;
+}
+
 .logo {
-  display: block;
-  text-decoration: none;
-}
-
-.brand-logo {
-  height: 45px; 
-  width: auto;  
-  display: block;
-}
-
-.nav-icons {
-    display: flex;
-    gap: 15px;
-    opacity: 0.7;
-    font-size: 1.2rem;
-}
-
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 60px 5% 40px; 
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero h1 {
+  color: #fff;
+  font-size: 1.8rem;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 5vw, 4rem); 
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #ff6b6b;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 5%;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.glitch-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  color: #ffffff;
   line-height: 1.1;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
 
-.hero h1 span {
-  background: linear-gradient(90deg, #df2a2a, #ff6b6b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.highlight {
+  color: #ff6b6b;
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
 }
 
-.hero p {
+.hero-subtext {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #a0a0a0;
+  max-width: 700px;
+  margin: 0 auto 40px auto;
+  line-height: 1.6;
+}
+
+/* --- BUTTONS --- */
+.btn-primary {
+  display: inline-block;
+  background: #ff6b6b;
+  color: #000;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  padding: 15px 40px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+/* --- AURA SECTION --- */
+.aura-section {
+  text-align: center;
+  padding: 100px 5%;
+  background: #0a0a0a;
+}
+
+.aura-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.aura-section p {
+  color: #d1d1d1;
+  max-width: 600px;
+  margin: 0 auto;
   font-size: 1.1rem;
+}
+
+/* --- FEATURES GRID --- */
+.features-section {
+  padding: 80px 5%;
+  background: #000;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: #111;
+  border: 1px solid #222;
+  padding: 40px;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  border-color: #ff6b6b;
+}
+
+.feature-card .icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
   color: #a0a0a0;
   line-height: 1.6;
-  margin-bottom: 30px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-/* Play Store Button */
-.play-store-link {
-  display: inline-block;
+/* --- FOOTER --- */
+.site-footer {
+  text-align: center;
+  padding: 50px 5%;
+  background: #050505;
+  border-top: 1px solid #1a1a1a;
 }
 
-.play-store-img {
-  height: 80px; /* FIX: Massively increased size for Desktop */
-  width: auto;
-  transition: transform 0.2s ease;
-  display: block;
+.footer-links {
+  margin: 20px 0;
 }
 
-.play-store-link:hover .play-store-img {
-  transform: scale(1.05);
+.footer-links a {
+  color: #666;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
 }
 
-/* --- FLUSH LEFT ROW CONTAINER --- */
-.features-row-container {
-  width: 100vw;
-  padding-bottom: 80px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; 
+.footer-links a:hover {
+  color: #ff6b6b;
 }
 
-/* The horizontal track */
-.features-row {
-  display: flex;
-  flex-wrap: nowrap; 
-  align-items: center; 
-  gap: clamp(15px, 2vw, 30px); 
-  
-  /* FIX: 5% padding on the left aligns the images with the text above on desktop */
-  padding: 0 20px 0 5%; 
-  
-  width: fit-content; 
-  margin: 0; 
-}
-
-/* Dynamic Image Scaling */
-.app-card-img {
-  height: clamp(280px, 45vh, 500px); 
-  width: auto; 
-  flex-shrink: 0; 
-  display: block;
-  border-radius: 20px; 
-  object-fit: contain; 
-  transition: transform 0.2s ease;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.app-card-img:hover {
-  transform: translateY(-5px); 
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  .brand-logo {
-    height: 42px; 
-  }
-  .hero {
-    padding: 40px 5% 30px;
-  }
-  .play-store-img {
-    height: 65px; /* FIX: Increased button size on Mobile */
-  }
-  .features-row {
-    /* FIX: 0px padding on the left makes it completely flush to the screen edge on phones */
-    padding: 0 20px 0 0; 
-  }
+.copyright {
+  color: #444;
+  font-size: 0.9rem;
 }
 
 /* --- LEGAL PAGES SPECIFIC CSS --- */
 .legal-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 40px 5% 80px;
+  padding: 60px 5% 100px;
   color: #d1d1d1;
   line-height: 1.8;
-  font-family: "Poppins", sans-serif;
 }
 
 .legal-container h1 {
@@ -169,7 +228,7 @@ body {
   font-size: 1.5rem;
   margin-top: 40px;
   margin-bottom: 15px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #222;
   padding-bottom: 10px;
 }
 
