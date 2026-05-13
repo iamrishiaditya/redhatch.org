@@ -6,19 +6,12 @@
   <title>Redhatch | The #1 Physical Esports Engine</title>
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
 </head>
-<body class="dark-mode">
-
-  <!-- THE HOYOVERSE AMBIENT GLOW LAYER -->
-  <div class="ambient-background">
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-    <div class="glow-orb orb-3"></div>
-  </div>
+<body>
 
   <!-- Navigation -->
-  <nav class="navbar glass-panel">
+  <nav class="navbar">
     <a href="index.html" class="logo">
       RED<span>HATCH</span>
     </a>
@@ -28,46 +21,57 @@
   <!-- HERO SECTION -->
   <header class="hero-section">
     <div class="hero-content">
-      <div class="badge glass-panel">🔥 NOW IN PRODUCTION MODE</div>
-      <h1 class="hero-title">THE WORLD'S #1<br><span class="gradient-text">PHYSICAL ESPORTS</span> ENGINE.</h1>
+      <div class="badge">NOW IN PRODUCTION MODE</div>
+      <h1 class="glitch-text">THE WORLD'S #1<br><span class="highlight">PHYSICAL ESPORTS</span> PLATFORM.</h1>
       <p class="hero-subtext">Real life is boring. Step out of the simulation. Turn your everyday city streets into a massive multiplayer battleground.</p>
       
       <div class="cta-group">
-        <a href="https://play.google.com/store/apps/details?id=cloud.blamegame.android" target="_blank" class="btn-primary glow-effect">GET IT ON GOOGLE PLAY</a>
+        <!-- PUT YOUR ACTUAL GOOGLE PLAY LINK IN THE HREF BELOW -->
+        <a href="https://play.google.com/store/apps/details?id=cloud.blamegame.android" target="_blank" class="btn-primary">GET IT ON GOOGLE PLAY</a>
       </div>
     </div>
   </header>
 
-  <!-- APP SCREENSHOTS SECTION (Floating Gallery) -->
+ <!-- APP SCREENSHOTS SECTION -->
   <section class="screenshots-section">
     <div class="container">
-      <h2 class="section-title">SEE IT IN ACTION</h2>
+      <h2>SEE IT IN ACTION</h2>
       <p class="section-desc">The reality engine is live. Step outside and hack your city.</p>
       <div class="screenshot-gallery">
-        <!-- These will now look like floating, glowing cards -->
-        <img src="screenshot1.png" alt="Play crazy street games" class="screenshot-img">
-        <img src="screenshot2.png" alt="Find Treasure Hunts" class="screenshot-img">
-        <img src="screenshot3.png" alt="Play Tag Game" class="screenshot-img">
-        <img src="screenshot4.png" alt="Play Super Zones" class="screenshot-img">
+        <img src="screenshot1.png" alt="Redhatch Gameplay 1" class="screenshot-img">
+        <img src="screenshot2.png" alt="Redhatch Gameplay 2" class="screenshot-img">
+        <img src="screenshot3.png" alt="Redhatch Gameplay 3" class="screenshot-img">
+        <img src="screenshot4.png" alt="Redhatch Gameplay 4" class="screenshot-img">
+        <img src="screenshot5.png" alt="Redhatch Gameplay 5" class="screenshot-img">
+        <img src="screenshot6.png" alt="Redhatch Gameplay 6" class="screenshot-img">
+        <img src="screenshot7.png" alt="Redhatch Gameplay 7" class="screenshot-img">
       </div>
     </div>
   </section>
 
-  <!-- FEATURES GRID (Glassmorphism Cards) -->
+  <!-- THE HOOK -->
+  <section class="aura-section">
+    <div class="container">
+      <h2>BECOME THE MAIN CHARACTER.</h2>
+      <p>Gain massive AURA from every physical interaction. Dominate the streets, complete real-life quests, and explore the real world like never before.</p>
+    </div>
+  </section>
+
+  <!-- FEATURES GRID -->
   <section class="features-section">
     <div class="container grid-layout">
-      <div class="feature-card glass-panel">
-        <div class="icon-container">🤝</div>
+      <div class="feature-card">
+        <div class="icon">🤝</div>
         <h3>GO SOLO OR DUO</h3>
         <p>A physical battle royale. Drop into your city's battlegrounds, hunt for virtual loot, and survive intense street-level tactical fights.</p>
       </div>
-      <div class="feature-card glass-panel">
-        <div class="icon-container">🎯</div>
+      <div class="feature-card">
+        <div class="icon">🎯</div>
         <h3>HACK THE WORLD</h3>
         <p>Join and create epic quests. Take control of your reality and bring whole squads in to complete real-life high-stakes missions.</p>
       </div>
-      <div class="feature-card glass-panel">
-        <div class="icon-container">🛠️</div>
+      <div class="feature-card">
+        <div class="icon">🛠️</div>
         <h3>BUILD FROM SCRATCH</h3>
         <p>You are the creator. Use the Redhatch Reality Engine to build your own brand-new street games and release them to the city.</p>
       </div>
@@ -75,7 +79,7 @@
   </section>
   
   <!-- Footer -->
-  <footer class="site-footer glass-panel">
+  <footer class="site-footer">
     <div class="container">
       <p>📧 redhatch.org@gmail.com</p>
       <div class="footer-links">
@@ -92,24 +96,22 @@
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
+    // Check for saved theme preference
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'light') {
-      body.classList.remove('dark-mode');
       body.classList.add('light-mode');
       themeToggle.textContent = '🌙';
     }
 
     themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      
       if (body.classList.contains('light-mode')) {
-        body.classList.remove('light-mode');
-        body.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
-        themeToggle.textContent = '☀️';
-      } else {
-        body.classList.remove('dark-mode');
-        body.classList.add('light-mode');
         localStorage.setItem('theme', 'light');
         themeToggle.textContent = '🌙';
+      } else {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '☀️';
       }
     });
   </script>
