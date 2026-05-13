@@ -14,11 +14,11 @@
   <nav class="navbar">
     <a href="index.html" class="logo">
       RED<span>HATCH</span>
-      <!-- <img src="top-logo.png" alt="Redhatch Logo" class="brand-logo"> -->
     </a>
+    <button id="theme-toggle" class="theme-btn">☀️</button>
   </nav>
 
-  <!-- HERO SECTION: Massive Impact -->
+  <!-- HERO SECTION -->
   <header class="hero-section">
     <div class="hero-content">
       <div class="badge">NOW IN PRODUCTION MODE</div>
@@ -26,12 +26,28 @@
       <p class="hero-subtext">Real life is boring. Step out of the simulation. Turn your everyday city streets into a massive multiplayer battleground.</p>
       
       <div class="cta-group">
-        <a href="#download" class="btn-primary">PLAY FREE NOW</a>
+        <!-- PUT YOUR ACTUAL GOOGLE PLAY LINK IN THE HREF BELOW -->
+        <a href="https://play.google.com/store/apps/details?id=com.your.packagename" target="_blank" class="btn-primary">GET IT ON GOOGLE PLAY</a>
       </div>
     </div>
   </header>
 
-  <!-- THE HOOK: Main Character Energy -->
+  <!-- APP SCREENSHOTS SECTION -->
+  <section class="screenshots-section">
+    <div class="container">
+      <h2>SEE IT IN ACTION</h2>
+      <p class="section-desc">The reality engine is live. Step outside and hack your city.</p>
+      <div class="screenshot-gallery">
+        <!-- REPLACE THESE SRC LINKS WITH YOUR ACTUAL SCREENSHOT IMAGES -->
+        <img src="screenshot1.jpg" alt="Redhatch Gameplay Map" class="screenshot-img">
+        <img src="screenshot2.jpg" alt="Redhatch Quest System" class="screenshot-img">
+        <img src="screenshot3.jpg" alt="Redhatch Multiplayer Survival" class="screenshot-img">
+        <img src="screenshot4.jpg" alt="Redhatch Profile and Aura" class="screenshot-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- THE HOOK -->
   <section class="aura-section">
     <div class="container">
       <h2>BECOME THE MAIN CHARACTER.</h2>
@@ -42,25 +58,21 @@
   <!-- FEATURES GRID -->
   <section class="features-section">
     <div class="container grid-layout">
-      
       <div class="feature-card">
         <div class="icon">🤝</div>
         <h3>GO SOLO OR DUO</h3>
         <p>A physical battle royale. Drop into your city's battlegrounds, hunt for virtual loot, and survive intense street-level tactical fights.</p>
       </div>
-
       <div class="feature-card">
         <div class="icon">🎯</div>
         <h3>HACK THE WORLD</h3>
         <p>Join and create epic quests. Take control of your reality and bring whole squads in to complete real-life high-stakes missions.</p>
       </div>
-
       <div class="feature-card">
         <div class="icon">🛠️</div>
         <h3>BUILD FROM SCRATCH</h3>
         <p>You are the creator. Use the Redhatch Reality Engine to build your own brand-new street games and release them to the city.</p>
       </div>
-
     </div>
   </section>
   
@@ -77,5 +89,29 @@
     </div>
   </footer>
 
+  <!-- Light/Dark Mode Logic -->
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'light') {
+      body.classList.add('light-mode');
+      themeToggle.textContent = '🌙';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      
+      if (body.classList.contains('light-mode')) {
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '🌙';
+      } else {
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '☀️';
+      }
+    });
+  </script>
 </body>
 </html>

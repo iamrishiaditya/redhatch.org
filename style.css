@@ -1,3 +1,30 @@
+/* --- CSS VARIABLES (LIGHT/DARK MODE) --- */
+:root {
+  /* Default Dark Mode */
+  --bg-color: #050505;
+  --text-color: #ffffff;
+  --text-muted: #a0a0a0;
+  --nav-bg: #000000;
+  --border-color: #1a1a1a;
+  --card-bg: #111111;
+  --card-border: #222222;
+  --hero-bg: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+  --aura-bg: #0a0a0a;
+}
+
+body.light-mode {
+  /* Light Mode Overrides */
+  --bg-color: #f8f9fa;
+  --text-color: #111111;
+  --text-muted: #555555;
+  --nav-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --card-bg: #ffffff;
+  --card-border: #d1d1d1;
+  --hero-bg: radial-gradient(circle at center, #ffffff 0%, #e9ecef 100%);
+  --aura-bg: #f1f3f5;
+}
+
 /* --- GLOBAL RESETS & FONTS --- */
 * {
   margin: 0;
@@ -6,10 +33,11 @@
 }
 
 body {
-  background-color: #050505;
-  color: #fff;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -23,12 +51,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #000;
-  border-bottom: 1px solid #1a1a1a;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s ease;
 }
 
 .logo {
-  color: #fff;
+  color: var(--text-color);
   font-size: 1.8rem;
   font-family: 'Space Grotesk', sans-serif;
   text-decoration: none;
@@ -40,6 +69,19 @@ body {
   color: #ff6b6b;
 }
 
+.theme-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.2s;
+}
+
+.theme-btn:hover {
+  transform: scale(1.1);
+}
+
 /* --- HERO SECTION --- */
 .hero-section {
   min-height: 90vh;
@@ -48,7 +90,8 @@ body {
   justify-content: center;
   text-align: center;
   padding: 60px 5%;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+  background: var(--hero-bg);
+  transition: background 0.3s ease;
 }
 
 .badge {
@@ -67,9 +110,9 @@ body {
 
 .glitch-text {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-color);
   line-height: 1.1;
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -82,7 +125,7 @@ body {
 
 .hero-subtext {
   font-size: clamp(1rem, 2vw, 1.3rem);
-  color: #a0a0a0;
+  color: var(--text-muted);
   max-width: 700px;
   margin: 0 auto 40px auto;
   line-height: 1.6;
@@ -105,27 +148,80 @@ body {
 }
 
 .btn-primary:hover {
-  background: #fff;
+  background: #ff4757;
+  color: #fff;
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+/* --- SCREENSHOTS SECTION --- */
+.screenshots-section {
+  padding: 80px 5%;
+  background: var(--bg-color);
+  text-align: center;
+}
+
+.screenshots-section h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.screenshot-gallery {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #ff6b6b var(--card-bg);
+}
+
+.screenshot-gallery::-webkit-scrollbar {
+  height: 8px;
+}
+.screenshot-gallery::-webkit-scrollbar-thumb {
+  background: #ff6b6b;
+  border-radius: 10px;
+}
+
+.screenshot-img {
+  height: 500px;
+  width: auto;
+  border-radius: 15px;
+  border: 2px solid var(--card-border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  background-color: var(--card-bg); /* acts as a placeholder color if image is missing */
+}
+
+.screenshot-img:hover {
+  transform: scale(1.02);
 }
 
 /* --- AURA SECTION --- */
 .aura-section {
   text-align: center;
   padding: 100px 5%;
-  background: #0a0a0a;
+  background: var(--aura-bg);
+  transition: background 0.3s ease;
 }
 
 .aura-section h2 {
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
-  color: #fff;
+  color: var(--text-color);
   margin-bottom: 20px;
 }
 
 .aura-section p {
-  color: #d1d1d1;
+  color: var(--text-muted);
   max-width: 600px;
   margin: 0 auto;
   font-size: 1.1rem;
@@ -134,7 +230,7 @@ body {
 /* --- FEATURES GRID --- */
 .features-section {
   padding: 80px 5%;
-  background: #000;
+  background: var(--bg-color);
 }
 
 .grid-layout {
@@ -144,15 +240,16 @@ body {
 }
 
 .feature-card {
-  background: #111;
-  border: 1px solid #222;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   padding: 40px;
   border-radius: 10px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .feature-card:hover {
   border-color: #ff6b6b;
+  transform: translateY(-5px);
 }
 
 .feature-card .icon {
@@ -162,13 +259,13 @@ body {
 
 .feature-card h3 {
   font-family: 'Space Grotesk', sans-serif;
-  color: #fff;
+  color: var(--text-color);
   font-size: 1.5rem;
   margin-bottom: 15px;
 }
 
 .feature-card p {
-  color: #a0a0a0;
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
@@ -176,8 +273,9 @@ body {
 .site-footer {
   text-align: center;
   padding: 50px 5%;
-  background: #050505;
-  border-top: 1px solid #1a1a1a;
+  background: var(--nav-bg);
+  border-top: 1px solid var(--border-color);
+  transition: background 0.3s ease;
 }
 
 .footer-links {
@@ -185,7 +283,7 @@ body {
 }
 
 .footer-links a {
-  color: #666;
+  color: var(--text-muted);
   text-decoration: none;
   margin: 0 10px;
   transition: color 0.3s ease;
@@ -196,8 +294,9 @@ body {
 }
 
 .copyright {
-  color: #444;
+  color: var(--text-muted);
   font-size: 0.9rem;
+  opacity: 0.7;
 }
 
 /* --- LEGAL PAGES SPECIFIC CSS --- */
@@ -205,12 +304,15 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 60px 5% 100px;
-  color: #d1d1d1;
+  color: var(--text-muted);
   line-height: 1.8;
 }
 
+.legal-container h1, .legal-container h2, .legal-container h3 {
+  color: var(--text-color);
+}
+
 .legal-container h1 {
-  color: #ffffff;
   font-family: 'Space Grotesk', sans-serif;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: 5px;
@@ -224,39 +326,19 @@ body {
 }
 
 .legal-container h2 {
-  color: #ffffff;
   font-size: 1.5rem;
   margin-top: 40px;
   margin-bottom: 15px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid var(--card-border);
   padding-bottom: 10px;
 }
 
-.legal-container h3 {
-  color: #ffffff;
-  font-size: 1.2rem;
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
-
-.legal-container p {
-  margin-bottom: 20px;
-}
-
-.legal-container ul {
-  margin-bottom: 30px;
-  padding-left: 20px;
-}
-
-.legal-container li {
-  margin-bottom: 10px;
-}
+.legal-container p { margin-bottom: 20px; }
+.legal-container ul { margin-bottom: 30px; padding-left: 20px; }
+.legal-container li { margin-bottom: 10px; }
 
 .legal-container a {
   color: #ff6b6b;
   text-decoration: none;
 }
-
-.legal-container a:hover {
-  text-decoration: underline;
-}
+.legal-container a:hover { text-decoration: underline; }
